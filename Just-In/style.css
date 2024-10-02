@@ -13,6 +13,15 @@ img {
   width: 100%;
 }
 
+.events:has(> .event) {
+  position: absolute;
+  inset: 20%;
+  background-color: color-mix(in oklch, aquamarine 60%, transparent);
+  padding: 20px;
+  border-radius: 20px;
+  color: black;
+}
+
 .add-button {
   position: absolute;
   top: 1px;
