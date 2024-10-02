@@ -1,0 +1,15 @@
+{
+  "background_color": "purple",
+  "description": "Toont je waar je zit in gebouw D.",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "icon/fox-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Waar zit ik in D?",
+  "short_name": "Just-In",
+  "start_url": "/index.html"
+}

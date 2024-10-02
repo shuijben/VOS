@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "just-in": {
+      "appLocation": "./just-in",
+      "outputLocation": "./just-in",
+      "appName": "just-in-sales-consument-poc",
+      "resourceGroup": "rg-poc-diederik-sales-consument"
+    }
+  }
+}
