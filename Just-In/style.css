@@ -1,37 +1,90 @@
+@font-face {
+    font-family: TheSans;
+    font-weight: 400;
+    src: url(./fonts/TheSansB4-5_Plain.woff2) format("woff2"),url(./fonts/TheSansB4-5_Plain.woff) format("woff")
+}
+
+@font-face {
+    font-family: TheSans;
+    font-weight: 700;
+    src: url(./fonts/TheSansB4-7_Bold.woff2) format("woff2"),url(./fonts/TheSansB4-7_Bold.woff) format("woff")
+}
+
+@font-face {
+    font-family: TheSans;
+    font-style: italic;
+    font-weight: 400;
+    src: url(./fonts/TheSansB4-5iPlainItalic.woff2) format("woff2"),url(./fonts/TheSansB4-5iPlainItalic.woff) format("woff")
+}
+
+@font-face {
+    font-family: TheMix;
+    font-weight: 700;
+    src: url(./fonts/TheMixB4-7_Bold.woff2) format("woff2"),url(./fonts/TheMixB4-7_Bold.woff) format("woff")
+}
+
 html {
-  height: 100%;
+  height: 100svh;
   background: black;
 }
 
 body {
   height: inherit;
+  font-family: TheSans,Helvetica,Arial,sans-serif;
+  font-size: 1.2rem;
   margin: 0;
 }
 
+main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+
+header {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  place-self: center;
+  color: black;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: TheMix,Helvetica,Arial,sans-serif;
+  margin-bottom: .5em;
+  max-width: 65ch;
+  text-wrap: balance;
+  text-wrap: pretty;
+} 
+
 img {
   display: block;
+  position: absolute;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  z-index: -1;
 }
 
 .events:has(> .event) {
-  position: absolute;
-  inset: 20%;
+  grid-column: 1 / -1;
+  place-self: center;
   background-color: color-mix(in oklch, aquamarine 60%, transparent);
-  padding: 20px;
   border-radius: 20px;
   color: black;
 }
 
+.event {
+  font-size: 4em;
+  margin: .3em;
+  max-width:25ch;
+}
+
 .add-button {
+  font: inherit;
   position: absolute;
   top: 1px;
   left: 1px;
   display: none;
-}
-
-@media (orientation: landscape) {
-  img {
-    height: 100%;
-    object-fit: cover;
-  }
 }
