@@ -54,6 +54,11 @@ h1,h2,h3,h4,h5,h6 {
   max-width: 65ch;
   text-wrap: balance;
   text-wrap: pretty;
+
+  & + p {
+    margin-top: 0;
+    font-size: 1.2em;
+  }
 } 
 
 img {
@@ -73,12 +78,17 @@ img {
   background-color: color-mix(in oklch, aquamarine 60%, transparent);
   border-radius: 20px;
   color: black;
+  margin-inline: 20px;
 }
 
 .event {
   font-size: 4em;
   margin: .3em;
   max-width:25ch;
+}
+
+.datum {
+  text-wrap: nowrap;
 }
 
 .add-button {
