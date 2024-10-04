@@ -33,6 +33,7 @@
     --font-family-heading-line-height: 1.1;
     --font-family-code: monospace;
     --body-max-width: 75ch;
+    --background-color: color-mix(in oklch, white 75%, transparent);
     --icon-angle-right:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="m10.642 17.736 5.099-5.099a.897.897 0 0 0-.004-1.274l-5.098-5.099a.896.896 0 0 0-1.271 0l-.844.855a.896.896 0 0 0 0 1.27l3.614 3.615-3.614 3.614a.896.896 0 0 0 0 1.27l.848.848a.896.896 0 0 0 1.27 0"/></svg>');
     --icon-angle-left:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="m14.637 17.736.847-.851a.896.896 0 0 0 0-1.271L11.87 12l3.61-3.618a.896.896 0 0 0 0-1.27l-.847-.848a.896.896 0 0 0-1.27 0l-5.1 5.099a.897.897 0 0 0 .005 1.274l5.098 5.099a.896.896 0 0 0 1.27 0Z"/></svg>')
   }
@@ -63,10 +64,15 @@
   }
 
   header {
-    background-color: color-mix(in oklch, aquamarine 60%, transparent);
+    background-color: var(--background-color);
     grid-area: header;
     text-align: center;
     color: black;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 1rem + 5vw, 3rem);
+    margin: 0;
   }
 
   img {
@@ -79,8 +85,17 @@
     z-index: -1;
   }
 
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    z-index: -1;
+  }
+
   .events:has(> .event) {
-    background-color: color-mix(in oklch, aquamarine 60%, transparent);
+    background-color: var(--background-color);
     border-radius: 20px;
     color: black;
   }
@@ -95,6 +110,12 @@
     text-wrap: nowrap;
   }
 
+  button {
+    border-radius: 12px;
+    padding-inline: .25em;
+    cursor: pointer;
+  }
+
   .add-button {
     position: absolute;
     top: 1px;
@@ -105,19 +126,29 @@
   footer {
     grid-area:footer;
     display: flex;
+    gap: 1rem;
     justify-content: space-between;
   }
 
   .changedate {
-    height: 3rem;
+    background-color: var(--background-color);
+    font-size: 1.5rem;
+    color: black;
+    border: 1px solid transparent;
     border-radius: 12px;
     display: flex;
+    padding-block: .125em;
     justify-content: space-between;
     align-items: center;
     gap: .25em;
 
+    &.vorige {
+      padding-right: .5em;
+    }
+    
     &.volgende {
       flex-direction: row-reverse;
+      padding-left: .5em;
     }
   }
 
