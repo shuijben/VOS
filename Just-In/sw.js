@@ -11,6 +11,7 @@ self.addEventListener('install', (e) => {
       '/images/vos3.jpg',
       '/images/vos4.jpg',
       '/images/vos5.jpg',
+      '/images/vosburcht.jpg',
       '/images/vosoff.jpg',
       '/images/voszoekt.jpg',
       '/fonts/TheMixB4-7_Bold.woff',

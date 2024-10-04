@@ -57,7 +57,7 @@ async function getEvents(startDate, endDate) {
       output.innerHTML = myEvents;
     } else {
       output.innerHTML = `<p class="event">Jammer! Je roedel zit niet in D, kwispel naar je burcht in B</p>`;
-      setImageSource(0);
+      setImageSource('burcht');
     } 
   } catch (error) {
     console.log('Error fetching data:', error);
@@ -145,6 +145,17 @@ volgende.addEventListener('click', () => {
   }
   peilData.startDate.setDate(peilData.startDate.getDate() + 1);
   peilData.endDate.setDate(peilData.endDate.getDate() + 1);
+  
+  getEvents(peilData.startDate, peilData.endDate);
+});
+
+const vorige = document.querySelector('.vorige');
+vorige.addEventListener('click', () => {
+  if (abortController) {
+    abortController.abort('fetching new data');
+  }
+  peilData.startDate.setDate(peilData.startDate.getDate() - 1);
+  peilData.endDate.setDate(peilData.endDate.getDate() - 1);
   
   getEvents(peilData.startDate, peilData.endDate);
 });
