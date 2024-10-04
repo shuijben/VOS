@@ -22,6 +22,8 @@ const peilData = {
 
 async function getEvents(startDate, endDate) {
   abortController = new AbortController();
+  confettiOn = false;
+  isBirthday?.draw();
   output.innerHTML = '<p class="event">Poot op de plaats, ik snuffel je locatie op</p>';
   const dayOfWeek = startDate.getDay();
   setDatumWeergave(startDate, days[dayOfWeek]);
