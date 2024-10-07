@@ -6,7 +6,7 @@ const output = document.querySelector('main .events');
 const datumWeergave = document.querySelector('.datum');
 const weekdagWeergave = document.querySelector('.weekdag');
 let confettiOn = false;
-const isBirthday = setupConfetti();
+let isBirthday = false;
 
 const birthdays = {
   '07-10':'Danique',
@@ -24,7 +24,7 @@ const peilData = {
 async function getEvents(startDate, endDate) {
   abortController = new AbortController();
   confettiOn = false;
-  isBirthday?.draw();
+  isBirthday?.remove?.();
   output.innerHTML = '';
   headeroutput.innerHTML = '<p class="event">Poot op de plaats, ik snuffel je locatie op</p>';
   const dayOfWeek = startDate.getDay();
@@ -64,7 +64,7 @@ async function getEvents(startDate, endDate) {
         return `<p class="event">${processEvent(event)} van ${startDatum.getHours()}:${addZero(startDatum.getMinutes())} tot ${endDatum.getHours()}:${addZero(endDatum.getMinutes())}</p>`;
       }).join('');
     } else if (data?.length > 0) {
-      myEvents = `<p class="event">${processEvent(data[0])}</p>`;
+      myEvents = `<p class="event result">${processEvent(data[0])}</p>`;
     }
     if (myEvents) {
       headeroutput.innerHTML = myEvents
@@ -107,10 +107,11 @@ function checkBirthday(date) {
   const birthday = birthdays[`${addZero(date.getDate())}-${addZero(date.getMonth() + 1)}`];
   if (birthday) {
     confettiOn = true;
-    isBirthday?.draw();
+    isBirthday = setupConfetti();
     return `<p class="event">Hoera, vandaag is ${birthday} jarig!</p>`;
   }
   confettiOn = false;
+  isBirthday?.remove();
   return '';
 }
 
@@ -188,10 +189,11 @@ vorige.addEventListener('click', () => {
 // Confetti
 function setupConfetti() {
 
-  let W = window.innerWidth;
-  let H = window.innerHeight;
-  const canvas = document.getElementById("canvas");
+  const canvas = document.createElement("canvas");
+  imgElem.insertAdjacentElement('afterend', canvas);
   const context = canvas.getContext("2d");
+  let W = canvas.clientWidth;
+  let H = canvas.clientHeight;
   const maxConfettis = 150;
   const particles = [];
 
@@ -239,7 +241,9 @@ function setupConfetti() {
   function Draw() {
     const results = [];
     
-    context.clearRect(0, 0, W, window.innerHeight);
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+    // context.clearRect(0, 0, W, window.innerHeight);
     if (confettiOn) {
       // Magical recursive functional love
       requestAnimationFrame(Draw);
@@ -271,24 +275,28 @@ function setupConfetti() {
     return results;
   }
 
-  window.addEventListener(
-    "resize",
-    function() {
-      W = window.innerWidth;
-      H = window.innerHeight;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    },
-    false
-  );
-
+  
   // Push new confetti objects to `particles[]`
   for (let i = 0; i < maxConfettis; i++) {
     particles.push(new confettiParticle());
   }
-
+  
   // Initialize
   canvas.width = W;
   canvas.height = H;
-  return { draw: Draw };
+  Draw();
+  return canvas;
 }
+
+window.addEventListener(
+  "resize",
+  function() {
+    if (confettiOn) {
+      confettiOn = false;
+      isBirthday?.remove?.();
+      confettiOn = true;
+      isBirthday = setupConfetti();
+    }
+  },
+  false
+);

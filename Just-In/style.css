@@ -49,7 +49,7 @@
       "main main main";
   	grid-template-rows: min-content 1fr;
 
-    & > *:not(img, .add-button) {
+    & > *:not(img, canvas, .add-button) {
       padding: 1rem;
     }
   }
@@ -72,6 +72,7 @@
 
   h1 {
     font-size: inherit;
+    font-weight: 400;
     margin: 0;
   }
 
@@ -102,7 +103,11 @@
 
   .event {
     margin: .3em;
-    
+  }
+
+  .result {
+    font-weight: 700;
+    font-size:clamp(2.5rem, 1rem + 7.5vw, 4rem);
   }
 
   main .event {
@@ -132,13 +137,13 @@
     position: fixed;
     inset: auto 0 0 0;
     display: flex;
-    gap: 1rem;
+    gap: .5rem;
     justify-content: space-between;
   }
 
   .changedate {
     background-color: var(--background-color);
-    font-size: clamp(2rem, 1rem + 5vw, 3rem);
+    font-size: clamp(1.75rem, 1rem + 3.75vw, 2.5rem);
     color: black;
     border: 1px solid transparent;
     border-radius: 12px;
@@ -146,7 +151,7 @@
     padding-block: .125em;
     justify-content: space-between;
     align-items: center;
-    gap: .25em;
+    gap: .125em;
 
     &.vorige {
       padding-right: .5em;
