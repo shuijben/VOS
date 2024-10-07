@@ -9,9 +9,23 @@ let confettiOn = false;
 let isBirthday = false;
 
 const birthdays = {
-  '07-10':'Danique',
+  '22-01': 'Jeske',
+  '23-01': 'Eric',
+  '26-01': 'Serge',
+  '22-02': 'Jodi & Yohan',
+  '27-03': 'Jessica',
+  '15-04': 'Kitty',
+  '16-04': 'Justus',
+  '28-04': 'Esther',
+  '06-05': 'Lieke',
+  '06-07': 'Peter',
+  '09-08': 'Luuk',
+  '13-08': 'Jantine',
+  '07-10': 'Danique',
   '06-10': 'Rianca',
   '09-10': 'Diederik', 
+  '07-11': 'Marisssa', 
+  '11-12': 'Sjors', 
 }
 
 let abortController = null;
@@ -108,7 +122,7 @@ function checkBirthday(date) {
   if (birthday) {
     confettiOn = true;
     isBirthday = setupConfetti();
-    return `<p class="event">Hoera, vandaag is ${birthday} jarig!</p>`;
+    return `<p class="event">Hoera, vandaag ${birthday.includes('&') ? 'zijn' : 'is'} ${birthday} jarig!</p>`;
   }
   confettiOn = false;
   isBirthday?.remove();
