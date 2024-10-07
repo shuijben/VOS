@@ -67,10 +67,11 @@
     grid-area: header;
     text-align: center;
     color: black;
+    font-size: clamp(2rem, 1rem + 5vw, 3rem);
   }
 
   h1 {
-    font-size: clamp(2rem, 1rem + 5vw, 3rem);
+    font-size: inherit;
     margin: 0;
   }
 
@@ -100,9 +101,13 @@
   }
 
   .event {
-    font-size:clamp(2.5rem, 1rem + 7.5vw, 4rem);
     margin: .3em;
+    
+  }
+
+  main .event {
     max-width:25ch;
+    font-size:clamp(2.5rem, 1rem + 7.5vw, 4rem);
   }
 
   .datum {
@@ -133,7 +138,7 @@
 
   .changedate {
     background-color: var(--background-color);
-    font-size: 1.5rem;
+    font-size: clamp(2rem, 1rem + 5vw, 3rem);
     color: black;
     border: 1px solid transparent;
     border-radius: 12px;

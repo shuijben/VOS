@@ -1,7 +1,8 @@
 const floors = ['sport', 'volleybal', 'tennis', 'voetbal', 'basketbal', 'bowling'];
 const days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 const imgElem = document.querySelector('img');
-const output = document.querySelector('.events');
+const headeroutput = document.querySelector('header .events');
+const output = document.querySelector('main .events');
 const datumWeergave = document.querySelector('.datum');
 const weekdagWeergave = document.querySelector('.weekdag');
 let confettiOn = false;
@@ -24,12 +25,14 @@ async function getEvents(startDate, endDate) {
   abortController = new AbortController();
   confettiOn = false;
   isBirthday?.draw();
-  output.innerHTML = '<p class="event">Poot op de plaats, ik snuffel je locatie op</p>';
+  output.innerHTML = '';
+  headeroutput.innerHTML = '<p class="event">Poot op de plaats, ik snuffel je locatie op</p>';
   const dayOfWeek = startDate.getDay();
   setDatumWeergave(startDate, days[dayOfWeek]);
   if (dayOfWeek === 0 || dayOfWeek === 6) {
-    output.innerHTML = '<p class="event">Weekend, geen werk!</p>' + checkBirthday(startDate);
+    headeroutput.innerHTML = '<p class="event">Weekend, geen werk!</p>';
     setImageSource('off');
+    output.innerHTML = checkBirthday(startDate);
     return;
   }
   setImageSource('zoekt');
@@ -64,11 +67,12 @@ async function getEvents(startDate, endDate) {
       myEvents = `<p class="event">${processEvent(data[0])}</p>`;
     }
     if (myEvents) {
-      output.innerHTML = myEvents + checkBirthday(startDate);
+      headeroutput.innerHTML = myEvents
     } else {
-      output.innerHTML = `<p class="event">Jammer! Je roedel zit niet in D, kwispel naar je burcht in B</p>` + checkBirthday(startDate);
+      headeroutput.innerHTML = `<p class="event">Jammer! Je roedel zit niet in D, kwispel naar je burcht in B</p>`;
       setImageSource('burcht');
     } 
+    output.innerHTML = checkBirthday(startDate);
   } catch (error) {
     console.log('Error fetching data:', error);
   }
