@@ -18,6 +18,7 @@ const birthdays = {
   '16-04': 'Justus',
   '28-04': 'Esther',
   '06-05': 'Lieke',
+  '15-06': 'Yannick',
   '06-07': 'Peter',
   '09-08': 'Luuk',
   '13-08': 'Jantine',
