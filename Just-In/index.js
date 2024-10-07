@@ -279,7 +279,7 @@ function setupConfetti() {
   );
 
   // Push new confetti objects to `particles[]`
-  for (var i = 0; i < maxConfettis; i++) {
+  for (let i = 0; i < maxConfettis; i++) {
     particles.push(new confettiParticle());
   }
 
