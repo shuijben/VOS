@@ -120,18 +120,25 @@
   }
 
   button {
+    border: 1px solid transparent;
     border-radius: 12px;
     padding-inline: .25em;
     cursor: pointer;
   }
-
+  
   .add-button {
+    font-size: 1.25rem;
+    padding-block: .125em;
+    background-color: white;
+    color: black;
+    border-color: currentColor;
     position: absolute;
+    width: max(80px, 12%);
     top: 1px;
     right: 1px;
     display: none;
   }
-
+  
   footer {
     grid-area: main;
     position: fixed;
@@ -140,13 +147,11 @@
     gap: .5rem;
     justify-content: space-between;
   }
-
+  
   .changedate {
     background-color: var(--background-color);
-    font-size: clamp(1.75rem, 1rem + 3.75vw, 2.5rem);
     color: black;
-    border: 1px solid transparent;
-    border-radius: 12px;
+    font-size: clamp(1.75rem, 1rem + 3.75vw, 2.5rem);
     display: flex;
     padding-block: .125em;
     justify-content: space-between;
