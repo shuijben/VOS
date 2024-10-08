@@ -126,7 +126,7 @@ function checkBirthday(date) {
     return `<p class="event">Hoera, vandaag ${birthday.includes('&') ? 'zijn' : 'is'} ${birthday} jarig!</p>`;
   }
   confettiOn = false;
-  isBirthday?.remove();
+  isBirthday?.remove?.();
   return '';
 }
 

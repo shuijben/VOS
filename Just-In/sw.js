@@ -5,6 +5,7 @@ self.addEventListener('install', (e) => {
       '/index.html',
       '/index.js',
       '/style.css',
+      '/favicon.ico',
       '/images/vos0.jpg',
       '/images/vos1.jpg',
       '/images/vos2.jpg',
