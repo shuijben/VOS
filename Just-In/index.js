@@ -71,7 +71,8 @@ async function getEvents(startDate, endDate) {
     });
     
     let myEvents = '';
-    const data = await response.json();
+    const result = await response.json();
+    const data = result?.filter((event) =>  floors.includes(event?.["SportType"]?.toLowerCase?.()));
     if (data?.length > 1) {
       myEvents = data.map((event) => {
         const startDatum = new Date(event?.["Starttijd"]);
