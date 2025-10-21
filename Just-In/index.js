@@ -101,8 +101,8 @@ async function getEvents(startDate, endDate) {
     if (myEvents) {
       headeroutput.innerHTML = myEvents
     } else {
-      headeroutput.innerHTML = `<p class="event">Jammer! Je roedel zit niet in D, kwispel naar je burcht in B</p>`;
-      setImageSource('burcht');
+      headeroutput.innerHTML = `<p class="event">Jammer! Je roedel zit niet in D, vandaag werkt iedereen thuis.</p>`;
+      setImageSource('thuis');
     } 
     output.innerHTML = checkBirthday(startDate);
   } catch (error) {
