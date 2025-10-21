@@ -88,10 +88,10 @@ async function getEvents(startDate, endDate) {
     // Simulate backend call with fixed data
     switch (dayOfWeek) {
       case 1: // Monday
-        myEvents = '<p class="event result">Basketbal</p>';
+        myEvents = `<p class="event result">${processEvent({SportType: "Basketbal"})}</p>`;
         break;
       case 3: // Wednesday
-        myEvents = '<p class="event result">Bowling</p>';
+        myEvents = `<p class="event result">${processEvent({SportType: "Bowling"})}</p>`;
         break;
       default:
         myEvents = '';
