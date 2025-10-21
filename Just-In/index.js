@@ -1,3 +1,4 @@
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const floors = ['sport', 'volleybal', 'tennis', 'voetbal', 'basketbal', 'bowling'];
 const days = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 const imgElem = document.querySelector('img');
@@ -14,18 +15,18 @@ const birthdays = {
   '26-01': 'Serge',
   '22-02': 'Jodi & Yohan',
   '27-03': 'Jessica',
+  '07-04': 'Wishaan',
   '15-04': 'Kitty',
-  '16-04': 'Justus',
   '28-04': 'Esther',
   '06-05': 'Lieke',
-  '15-06': 'Yannick',
+  '16-05': 'Marchien',
   '06-07': 'Peter',
   '09-08': 'Luuk',
   '13-08': 'Jantine',
-  '07-10': 'Danique',
   '06-10': 'Rianca',
-  '09-10': 'Diederik', 
-  '07-11': 'Marisssa', 
+  '07-10': 'Danique',
+  '22-10': 'Tom', 
+  '07-11': 'Marissa', 
   '11-12': 'Sjors', 
 }
 
@@ -51,37 +52,52 @@ async function getEvents(startDate, endDate) {
     return;
   }
   setImageSource('zoekt');
-  const logicAppUrl = 'https://logicapp-ip-diederik.azurewebsites.net:443/api/office_connection/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=N6TLr4SIRyzvll5Z_jEoRvgW6jlLTBVlJGfIbuUdxHs';
+  // const logicAppUrl = 'https://logicapp-ip-diederik.azurewebsites.net:443/api/office_connection/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=N6TLr4SIRyzvll5Z_jEoRvgW6jlLTBVlJGfIbuUdxHs';
 
   startDate.setHours(0, 0, 0, 0);
   endDate.setHours(23, 59, 59, 999);
 
   try {
-    const response = await fetch(logicAppUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-      organizer: 'fpa.ict.sales@cz.nl',
-    }), 
-    signal: abortController.signal
-    });
+    await wait(2000); // Simulate delay
+    // const response = await fetch(logicAppUrl, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //   startDate: startDate.toISOString(),
+    //   endDate: endDate.toISOString(),
+    //   organizer: 'fpa.ict.sales@cz.nl',
+    // }), 
+    // signal: abortController.signal
+    // });
     
     let myEvents = '';
-    const result = await response.json();
-    const data = result?.filter((event) =>  floors.includes(event?.["SportType"]?.toLowerCase?.()));
-    if (data?.length > 1) {
-      myEvents = data.map((event) => {
-        const startDatum = new Date(event?.["Starttijd"]);
-        const endDatum = new Date(event?.["Eindtijd"]);
-        return `<p class="event">${processEvent(event)} van ${startDatum.getHours()}:${addZero(startDatum.getMinutes())} tot ${endDatum.getHours()}:${addZero(endDatum.getMinutes())}</p>`;
-      }).join('');
-    } else if (data?.length > 0) {
-      myEvents = `<p class="event result">${processEvent(data[0])}</p>`;
+    // const result = await response.json();
+    // const data = result?.filter((event) =>  floors.includes(event?.["SportType"]?.toLowerCase?.()));
+    // if (data?.length > 1) {
+    //   myEvents = data.map((event) => {
+    //     const startDatum = new Date(event?.["Starttijd"]);
+    //     const endDatum = new Date(event?.["Eindtijd"]);
+    //     return `<p class="event">${processEvent(event)} van ${startDatum.getHours()}:${addZero(startDatum.getMinutes())} tot ${endDatum.getHours()}:${addZero(endDatum.getMinutes())}</p>`;
+    //   }).join('');
+    // } else if (data?.length > 0) {
+    //   myEvents = `<p class="event result">${processEvent(data[0])}</p>`;
+    // }
+
+    // Simulate backend call with fixed data
+    switch (dayOfWeek) {
+      case 1: // Monday
+        myEvents = '<p class="event result">Basketbal</p>';
+        break;
+      case 3: // Wednesday
+        myEvents = '<p class="event result">Bowling</p>';
+        break;
+      default:
+        myEvents = '';
+        break;
     }
+
     if (myEvents) {
       headeroutput.innerHTML = myEvents
     } else {
