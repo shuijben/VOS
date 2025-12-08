@@ -144,6 +144,27 @@ function checkBirthday(date) {
   }
   confettiOn = false;
   isBirthday?.remove?.();
+  return checkChristmas(date);
+}
+
+function checkChristmas(date) {
+  const dateKey = `${addZero(date.getDate())}-${addZero(date.getMonth() + 1)}`;
+  const christmas = dateKey === '25-12' ? 'Eerste Kerstdag' : dateKey === '26-12' ? 'Tweede Kerstdag' : dateKey === '01-01' ? 'Nieuwjaar!' : null;
+  if (christmas) {
+    confettiOn = true;
+    if (christmas === 'Nieuwjaar!') {
+      headeroutput.innerHTML = '';
+      setImageSource('Nieuwjaar');
+      isBirthday = setupConfetti(["Gold", "Silver"]);
+      return `<p class="event">Gelukkig Nieuwjaar!</p>`;
+    }
+    headeroutput.innerHTML = `<p class="event">${christmas}</p>`;
+    setImageSource('Kerst');
+    isBirthday = setupConfetti(["White"]);
+    return `<p class="event">Vrolijk Kerstfeest!</p>`;
+  }
+  confettiOn = false;
+  isBirthday?.remove?.();
   return '';
 }
 
@@ -219,7 +240,7 @@ vorige.addEventListener('click', () => {
 });
 
 // Confetti
-function setupConfetti() {
+function setupConfetti(colors) {
 
   const canvas = document.createElement("canvas");
   imgElem.insertAdjacentElement('afterend', canvas);
@@ -229,7 +250,7 @@ function setupConfetti() {
   const maxConfettis = 150;
   const particles = [];
 
-  const possibleColors = [
+  const possibleColors = colors || [
     "DodgerBlue",
     "OliveDrab",
     "Gold",
