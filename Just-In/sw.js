@@ -38,7 +38,10 @@ self.addEventListener('fetch', (e) => {
       //respond to get favicon.ico requests
       if (url.endsWith('favicon.ico')) {
         console.log('favicon requested, respond with the one cached');
-        return cache.match('./favicon.ico').then((cachedResponse) => cachedResponse);
+        return cache.match('./favicon.ico').then((cachedResponse) => {
+          console.log('returning cached favicon');
+          return cachedResponse;
+        });
       }
       // Go to the cache first
       return cache.match(e.request.url).then((cachedResponse) => {
@@ -61,9 +64,4 @@ self.addEventListener('fetch', (e) => {
   } else {
     return;
   }
-
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
-    }));
 });
